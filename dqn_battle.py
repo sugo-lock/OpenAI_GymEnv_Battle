@@ -22,16 +22,6 @@ env.seed(123)
 nb_actions = env.action_space.n
 
 # Next, we build a very simple model.
-#model = Sequential()
-#model.add(Flatten(input_shape=(1,) + env.observation_space.shape))
-#model.add(Dense(2))
-#model.add(Activation('relu'))
-#model.add(Dense(2))
-#model.add(Activation('relu'))
-#model.add(Dense(2))
-#model.add(Activation('relu'))
-#model.add(Dense(nb_actions))
-#model.add(Activation('linear'))
 model = Sequential()
 model.add(Flatten(input_shape=(1,) + env.observation_space.shape))
 model.add(Reshape((2, 1), input_shape=(2, )))
@@ -40,6 +30,7 @@ model.add(LSTM(50, input_shape=(2, 1),
           dropout=0.0))
 model.add(Dense(nb_actions))
 model.add(Activation('linear'))
+
 
 print(model.summary())
 
